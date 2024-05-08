@@ -1,0 +1,34 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:AvaloniaFFTSpectrum.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="AvaloniaFFTSpectrum.Views.MainView"
+             x:DataType="vm:MainViewModel">
+	<Design.DataContext>
+
+		<vm:MainViewModel />
+	</Design.DataContext>
+	<Grid Name="_grid">
+		<StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" Name="_stack">
+			
+		</StackPanel>
+		<!--<ItemsControl ItemsSource="{Binding FFT}">
+			<ItemsControl.ItemsPanel>
+				<ItemsPanelTemplate>
+					<StackPanel></StackPanel>
+				</ItemsPanelTemplate>
+			</ItemsControl.ItemsPanel>
+			<ItemsControl.ItemTemplate>
+				<DataTemplate>
+					<Border Width="{Binding Width}" Height="{Binding Height}" Background="Green">
+
+					</Border>
+				</DataTemplate>
+			</ItemsControl.ItemTemplate>
+		</ItemsControl>-->
+
+		 
+	</Grid>
+</UserControl>

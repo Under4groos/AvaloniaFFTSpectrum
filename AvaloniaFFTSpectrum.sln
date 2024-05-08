@@ -1,0 +1,45 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34728.123
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AvaloniaFFTSpectrum", "AvaloniaFFTSpectrum\AvaloniaFFTSpectrum.csproj", "{D23FF5CD-8EB5-4A51-887A-08872CC59E3B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AvaloniaFFTSpectrum.Android", "AvaloniaFFTSpectrum.Android\AvaloniaFFTSpectrum.Android.csproj", "{2A1BE38B-4B77-482F-B513-EF57AE34848E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AvaloniaFFTSpectrum.Desktop", "AvaloniaFFTSpectrum.Desktop\AvaloniaFFTSpectrum.Desktop.csproj", "{A7EAB501-30EC-4203-8D45-F6471E186500}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AvaloniaFFTSpectrumServer", "AvaloniaFFTSpectrumServer\AvaloniaFFTSpectrumServer.csproj", "{E9315FE8-2FEC-4091-86FF-782DC33FA88C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D23FF5CD-8EB5-4A51-887A-08872CC59E3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D23FF5CD-8EB5-4A51-887A-08872CC59E3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D23FF5CD-8EB5-4A51-887A-08872CC59E3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D23FF5CD-8EB5-4A51-887A-08872CC59E3B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2A1BE38B-4B77-482F-B513-EF57AE34848E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A1BE38B-4B77-482F-B513-EF57AE34848E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A1BE38B-4B77-482F-B513-EF57AE34848E}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{2A1BE38B-4B77-482F-B513-EF57AE34848E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A1BE38B-4B77-482F-B513-EF57AE34848E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2A1BE38B-4B77-482F-B513-EF57AE34848E}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{A7EAB501-30EC-4203-8D45-F6471E186500}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A7EAB501-30EC-4203-8D45-F6471E186500}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A7EAB501-30EC-4203-8D45-F6471E186500}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A7EAB501-30EC-4203-8D45-F6471E186500}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E9315FE8-2FEC-4091-86FF-782DC33FA88C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E9315FE8-2FEC-4091-86FF-782DC33FA88C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E9315FE8-2FEC-4091-86FF-782DC33FA88C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E9315FE8-2FEC-4091-86FF-782DC33FA88C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {48CB347A-086B-42AC-866E-F59D80D06B98}
+	EndGlobalSection
+EndGlobal
