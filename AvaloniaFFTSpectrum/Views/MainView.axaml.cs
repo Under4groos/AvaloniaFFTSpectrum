@@ -15,7 +15,8 @@ public partial class MainView : UserControl
     {
         EnableBroadcast = true
     };
-
+    //  public int count_elements = 80;
+    public ViewModel__MainWindow DataContextVM => this.DataContext as ViewModel__MainWindow;
     public MainView()
     {
         InitializeComponent();
@@ -23,6 +24,20 @@ public partial class MainView : UserControl
         this.Loaded += MainView_Loaded;
 
         _grid.SizeChanged += _grid_SizeChanged;
+        _colorpicker.PointerMoved += _colorpicker_PointerMoved;
+
+        _button_color.Click += (o, e) =>
+        {
+            _colorpicker.IsVisible = !_colorpicker.IsVisible;
+        };
+    }
+
+    private void _colorpicker_PointerMoved(object? sender, Avalonia.Input.PointerEventArgs e)
+    {
+        foreach (Border item in _stack.Children)
+        {
+            item.Background = new SolidColorBrush(_colorpicker.Color);
+        }
     }
 
     private void _grid_SizeChanged(object? sender, SizeChangedEventArgs e)
@@ -32,86 +47,48 @@ public partial class MainView : UserControl
             vmodel.SizeScreen = e.NewSize;
 
         }
-
-
-
     }
 
     private void MainView_Loaded(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
     {
-        if (this.DataContext is ViewModel__MainWindow vmodel)
-        {
-
-            for (int i = 0; i < 40; i++)
-            {
-                _stack.Children.Add(new Border()
-                {
-                    Background = Brushes.Green,
-                    Width = vmodel.SizeScreen.Width / 40,
-                    VerticalAlignment = Avalonia.Layout.VerticalAlignment.Bottom,
-                    Height = 1,
-
-                });
-                //var vv_ = new ViewModels.Panel()
-                //{
-                //    Height = 2,
-                //    Width = vmodel.SizeScreen.Width / 40,
-
-                //};
-                //vmodel.FFT.Add(vv_);
-            }
-
-        }
 
         new Thread(() =>
         {
-
-
             while (true)
             {
                 try
                 {
-                    Client.Send(new byte[] { }, 0, new IPEndPoint(IPAddress.Broadcast, 7070));
-
-
-
-                    //string g = Encoding.UTF8.GetString(Client.ReceiveAsync().Result.Buffer);
-                    //var jo = JsonConvert.DeserializeObject<ObservableCollection<int>>(g);
-
-
+                    Client.Send(new byte[] { 0, 0, 0, 0 }, 0, new IPEndPoint(IPAddress.Broadcast, 7070));
 
                     byte[] jo = Client.ReceiveAsync().Result.Buffer;
 
 
+
                     Dispatcher.UIThread.Invoke(() =>
                     {
-                        if (this.DataContext is ViewModel__MainWindow vmodel)
+
+                        for (int i = 0; i < jo.Length; i++)
                         {
-                            for (int i = 0; i < jo.Length; i++)
+                            if (i >= _stack.Children.Count)
                             {
-                                //vmodel.FFT[i] = new ViewModels.Panel()
-                                //{
-
-                                //    Width = vmodel.SizeScreen.Width / jo.Length,
-                                //    Height = jo[i]
-                                //};
-
-                                if (_stack.Children[i] is Border item)
+                                _stack.Children.Add(new Border()
                                 {
+                                    Background = Brushes.Green,
+                                    Width = DataContextVM.SizeScreen.Width / jo.Length,
+                                    VerticalAlignment = Avalonia.Layout.VerticalAlignment.Bottom,
+                                    Height = jo[i],
 
-                                    item.Width = vmodel.SizeScreen.Width / jo.Length;
-                                    item.Height = jo[i];
-                                }
-
-
+                                });
+                                continue;
                             }
 
+                            if (_stack.Children[i] is Border item)
+                            {
+
+                                item.Width = DataContextVM.SizeScreen.Width / jo.Length;
+                                item.Height = jo[i];
+                            }
                         }
-
-
-
-
-
                     });
 
                     Thread.Sleep(1000 / 20);

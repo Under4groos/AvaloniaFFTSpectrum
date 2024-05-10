@@ -12,7 +12,7 @@ using System.Net.Sockets;
 
     FFTAnalyzer viewModel_Analyzer = new FFTAnalyzer()
     {
-        ScalingStrategy = ScalingStrategy.Sqrt,
+        ScalingStrategy = ScalingStrategy.Linear,
         Rate = 60,
     };
     byte[] data = { };
@@ -22,8 +22,11 @@ using System.Net.Sockets;
         {
             try
             {
-                Server.Receive(ref ClientEp);
-
+                byte[] bytes_ = Server.Receive(ref ClientEp);
+                //if ((from b in bytes_ where b == 0 select b).Count() == 0)
+                //{
+                //    Server.Send(data, data.Length, ClientEp);
+                //}
                 Server.Send(data, data.Length, ClientEp);
             }
             catch (Exception)
