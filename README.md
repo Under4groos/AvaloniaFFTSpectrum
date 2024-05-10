@@ -1,5 +1,23 @@
 # AvaloniaFFTSpectrum
 
+# Using Libs
+1. CSCore - advanced audio library
+```
+https://github.com/filoe/cscore
+```
+```
+https://www.nuget.org/packages/CSCore
+```
+```
+dotnet add package CSCore --version 1.2.1.2
+```
+2. FFT_SpecrtumLib  \\(>-<)! 
+```
+https://github.com/Under4groos/FFT_SpecrtumLib
+```
+
+
+
 
 # Build application ( PC | Android )
 1. Install 
