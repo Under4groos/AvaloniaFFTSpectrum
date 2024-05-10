@@ -7,6 +7,12 @@
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="AvaloniaFFTSpectrum.Views.MainWindow"
         Icon="/Assets/avalonia-logo.ico"
-        Title="AvaloniaFFTSpectrum">
-        <views:MainView />
+        Title="AvaloniaFFTSpectrum"
+		Background="Transparent"
+		 
+		 ExtendClientAreaToDecorationsHint="True"
+		TransparencyBackgroundFallback="Transparent"
+		BorderThickness="0"
+		>
+        <views:MainView Margin="0,40,0,0" />
 </Window>

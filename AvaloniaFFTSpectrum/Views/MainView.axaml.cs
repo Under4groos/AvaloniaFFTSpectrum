@@ -15,7 +15,7 @@ public partial class MainView : UserControl
     {
         EnableBroadcast = true
     };
-    //  public int count_elements = 80;
+    SolidColorBrush solidColorBrush = new SolidColorBrush(Brushes.Green.Color);
     public ViewModel__MainWindow DataContextVM => this.DataContext as ViewModel__MainWindow;
     public MainView()
     {
@@ -34,10 +34,8 @@ public partial class MainView : UserControl
 
     private void _colorpicker_PointerMoved(object? sender, Avalonia.Input.PointerEventArgs e)
     {
-        foreach (Border item in _stack.Children)
-        {
-            item.Background = new SolidColorBrush(_colorpicker.Color);
-        }
+
+        solidColorBrush = new SolidColorBrush(_colorpicker.Color);
     }
 
     private void _grid_SizeChanged(object? sender, SizeChangedEventArgs e)
@@ -59,34 +57,33 @@ public partial class MainView : UserControl
                 try
                 {
                     Client.Send(new byte[] { 0, 0, 0, 0 }, 0, new IPEndPoint(IPAddress.Broadcast, 7070));
-
                     byte[] jo = Client.ReceiveAsync().Result.Buffer;
-
-
-
                     Dispatcher.UIThread.Invoke(() =>
                     {
-
+                        double w_ = _grid_items.Bounds.Width / jo.Length;
                         for (int i = 0; i < jo.Length; i++)
                         {
-                            if (i >= _stack.Children.Count)
+                            if (i >= _grid_items.Children.Count)
                             {
-                                _stack.Children.Add(new Border()
+                                _grid_items.Children.Add(new Border()
                                 {
-                                    Background = Brushes.Green,
-                                    Width = DataContextVM.SizeScreen.Width / jo.Length,
+                                    Background = solidColorBrush,
+                                    Width = w_,
                                     VerticalAlignment = Avalonia.Layout.VerticalAlignment.Bottom,
-                                    Height = jo[i],
-
+                                    HorizontalAlignment = Avalonia.Layout.HorizontalAlignment.Left,
+                                    Height = _grid_items.Height / 255 * jo[i],
+                                    Margin = new Avalonia.Thickness(w_ * i, 0)
                                 });
                                 continue;
                             }
 
-                            if (_stack.Children[i] is Border item)
+                            if (_grid_items.Children[i] is Border item)
                             {
 
-                                item.Width = DataContextVM.SizeScreen.Width / jo.Length;
-                                item.Height = jo[i];
+                                item.Width = w_;
+                                item.Height = _grid_items.Bounds.Height / 255 * jo[i];
+                                item.Margin = new Avalonia.Thickness(w_ * i, 0);
+                                item.Background = solidColorBrush;
                             }
                         }
                     });

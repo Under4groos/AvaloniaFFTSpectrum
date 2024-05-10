@@ -12,8 +12,8 @@ using System.Net.Sockets;
 
     FFTAnalyzer viewModel_Analyzer = new FFTAnalyzer()
     {
-        ScalingStrategy = ScalingStrategy.Linear,
-        Rate = 60,
+        ScalingStrategy = ScalingStrategy.Sqrt,
+        Rate = 30,
     };
     byte[] data = { };
     new Thread(() =>
@@ -44,11 +44,10 @@ using System.Net.Sockets;
     {
         try
         {
-
-            var ar = (from byte_ in FrequencyBins select (int)byte_.Value).ToList().GetRange(0, 40).ToArray();
-
-            data = (from b in ar select (byte)b).ToArray();
-            Console.WriteLine(string.Join(" ", ar));
+            var v = (from byte_ in FrequencyBins select byte_.Value);
+            // var ar = v.ToList().GetRange(0, 50).ToArray();
+            data = (from b in v select (byte)b).ToArray();
+            Console.WriteLine(string.Join(" ", data));
 
 
         }
